@@ -1,9 +1,9 @@
 <div class="card">
-	<h5 class="card-header">Service <?php echo $counter?></h5>
+	<h5 class="card-header">Item <?php echo $counter?></h5>
 
 	<div class="card-body border-top">
 		<div class="form-group">
-			<textarea class="form-control form-control-sm" name="services[]" rows="1"></textarea>
+			<textarea class="form-control form-control-sm" name="items[]" rows="1"></textarea>
 		</div>
 		<div class="form-group">
 			<label for="sfrequency" class="col-form-label">Frequency</label>

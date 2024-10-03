@@ -10,7 +10,7 @@ class ClientQuotation extends Front_Controller {
 		parent::__construct();
 		$this->load->model( 'quotation_model' );
 		$this->load->model( 'users_model' );
-		$this->load->model( 'quotation_items_model' );
+		$this->load->model( 'quotation_services_model' );
 		$this->load->model( 'quotation_status_model' );
 
 	}
@@ -35,7 +35,7 @@ class ClientQuotation extends Front_Controller {
 	
 	function _read_quotation($id, $row){
 		$userinfo = $this->users_model->get_by_id($row->prepared_by);
-			$items = $this->quotation_items_model->getByQuoteId($id);
+			$items = $this->quotation_services_model->getByQuoteId($id);
 			
             $data = array(
 			'id' => $row->id,
