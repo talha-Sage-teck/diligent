@@ -97,12 +97,12 @@
 							<div class="services_block">
 								<div class="card">
 									<h5 class="card-header">
-														Service
+														Item
 													</h5>
 								
 									<div class="card-body border-top">
 										<div class="form-group">
-											<textarea class="form-control form-control-sm" name="services[]" rows="1"></textarea>
+											<textarea class="form-control form-control-sm" name="items[]" rows="1"></textarea>
 										</div>
 										<div class="form-group">
 											<label for="sfrequency" class="col-form-label">Frequency</label>
@@ -117,7 +117,7 @@
 
 							</div>
 							<div class="form-group">
-								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="1"><i class="fa fa-fw fa-plus text-success"></i> Add More Services</button>
+								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="1"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
 							</div>
 
 
