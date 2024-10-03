@@ -248,13 +248,13 @@ class Quotation extends Front_Controller {
 		// delete all service of then recreate all
 		$this->quotation_services_model->delete($quotation_id,"quotation_id");
 		
-		$services = $this->input->post( 'services', TRUE );
+		$items = $this->input->post( 'items', TRUE );
 			$frequency = $this->input->post( 'sfrequency', TRUE );
 			$price = $this->input->post( 'sprice', TRUE );
-			for($i = 0; $i< count($services); $i++){
+			for($i = 0; $i< count($items); $i++){
 				if($frequency[$i] != "" && $price[$i] != ""){
 				$services_data[] = [
-									"title" => $services[$i],
+									"title" => $items[$i],
 									"frequency" => $frequency[$i],
 									"price" => $price[$i],
 									"quotation_id" => $quotation_id,
@@ -284,7 +284,7 @@ class Quotation extends Front_Controller {
     }
 	
 	function ajax_service_block(){
-		$data['services'] = db_options_arr($this->services_model->get_all(), 'id', 'title');
+		$data['items'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
 		$data['row'] = [];
 		$data['action'] = 'Add';
 		$data['counter'] = $this->input->get("counter");
@@ -295,7 +295,7 @@ class Quotation extends Front_Controller {
 	public
 	function _rules() {
 		$this->form_validation->set_rules( 'clientname', 'Client Name', 'trim|required' );
-		$this->form_validation->set_rules( 'services[]', 'Services', 'trim|required' );
+		$this->form_validation->set_rules( 'items[]', 'Items', 'trim|required' );
 		$this->form_validation->set_error_delimiters( '<div>', '</div>' );
 	}
 
