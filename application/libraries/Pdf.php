@@ -10,10 +10,10 @@ class Pdf extends TCPDF
 	//Page header
     public function Header() {
         // Logo
-		$this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP+11, PDF_MARGIN_RIGHT);
+		//$this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP+11, PDF_MARGIN_RIGHT);
 //        $image_file = FCPATH.'assets/images/pdf-header.png';
         $image_file = FCPATH.'assets/images/pdf-full-bga4.jpg';
-        $this->Image($image_file, 0, 6, 210, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $this->Image($image_file, 0, 0, 305, 350, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 //		$this->Image($image_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
         // Set font
         $this->SetFont('helvetica', 'B', 20);
@@ -27,8 +27,8 @@ class Pdf extends TCPDF
 //        $this->SetY();
         // Set font
         $this->SetFont('helvetica', 'I', 8);
-		$image_file = FCPATH.'assets/images/pdf-footer.png';
-		$footer = $this->Image($image_file, 0,$this->GetY()-6, 210);
+		$image_file = FCPATH.'assets/images/pdf-footer.jpg';
+		$footer = $this->Image($image_file, 0,$this->GetY()-10, 210);
         // Page number
         $this->Cell(0, 20, $footer, 0, 0, 'R');
     } 
