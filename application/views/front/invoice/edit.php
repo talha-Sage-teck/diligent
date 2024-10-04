@@ -121,36 +121,69 @@
                                             </div>
 											<div class="services_block">
 												<?php 
-											if(!empty($services)){
+											if(!empty($items)){
 												$n = 1;
-											foreach($services as $service){
+											foreach($items as $item){
 												$uniqid = uniqid();?>
 												<div class="card"  id="<?=$uniqid?>">
 													<h5 class="card-header">
-														Service <?php echo $n?>
+														Item <?php echo $n?>
 													</h5>
 													<div class="card-body border-top">
 													<div class="form-group">
-														<textarea class="form-control form-control-sm" name="services[]" rows="1"><?php echo $service->title?></textarea>
-													</div>
+										<select class="form-control form-control-sm item-select select-<?=$n?>" name="items[]">
+											<option value="<?= $item->title ?>" default><?= $item->title ?></option>
+											<?php foreach($myitems as $idx => $title): ?>
+												<option value="<?= $title ?>"><?= $title ?></option>
+											<?php endforeach; ?>
+											<option value="custom">Custom</option> <!-- Option to trigger custom input -->
+										</select>
+
+										<!-- Custom input field with unique id -->
+										<input type="text" class="form-control form-control-sm custom-item custom-<?=$n?>" placeholder="Enter custom value" style="display: none;">
+									</div>
+
+									<script>
+										document.addEventListener('change', function(event) {
+											// Check if the changed element is a select dropdown with class 'item-select'
+											if (event.target && event.target.classList.contains('item-select')) {
+												var selectElement = event.target;
+												var selectId = selectElement.className.split(' ').find(cls => cls.startsWith('select-')).split('-')[1]; // Extract the unique id from select class
+
+												// Find the associated custom input field using the extracted id
+												var customInput = document.querySelector('.custom-' + selectId); // Using querySelector to select by class
+
+												// Check if 'Custom' is selected
+												if (selectElement.value === 'custom') {
+													customInput.style.display = "block";  // Show the custom input
+													customInput.setAttribute("name", "items[]");  // Update name for form submission
+													selectElement.removeAttribute("name");  // Remove name from select to avoid conflicts
+												} else {
+													customInput.style.display = "none";  // Hide the custom input
+													customInput.removeAttribute("name");  // Remove name from custom input
+													selectElement.setAttribute("name", "items[]");  // Reapply name to select
+												}
+											}
+										});
+									</script>
 													<div class="form-group">
 														<label for="rate" class="col-form-label">Rate</label>
-														<input id="rate-<?=$uniqid?>" name="rate[]" type="number" class="form-control inv_rate" value="<?php echo $service->rate?>">
+														<input id="rate-<?=$uniqid?>" name="rate[]" type="number" class="form-control inv_rate" value="<?php echo $item->rate?>">
 													</div>
 													<div class="form-group">
 														<label for="sqty" class="col-form-label">Quantity</label>
-														<input id="sqty-<?=$uniqid?>" name="qty[]" value="1" type="number" class="form-control inv_qty" min="1" value="<?php echo $service->qty?>">
+														<input id="sqty-<?=$uniqid?>" name="qty[]" value="1" type="number" class="form-control inv_qty" min="1" value="<?php echo $item->qty?>">
 													</div>
 													<div class="form-group">
 														<label for="tax_amount" class="col-form-label">Tax Amount</label>
 														<div class="input-group mb-3"><span class="input-group-prepend"><span class="input-group-text"><?php echo VAT_TEXT?></span></span>
 														<input type="hidden" class="tax_value" value="<?php echo VAT_VALUE?>">
-														<input id="tax_amount-<?=$uniqid?>" name="tax_amount[]" type="number" class="form-control inv_tax_amount" value="<?php echo $service->tax_amount?>">
+														<input id="tax_amount-<?=$uniqid?>" name="tax_amount[]" type="number" class="form-control inv_tax_amount" value="<?php echo $item->tax_amount?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label for="total_amount" class="col-form-label">Amount</label>
-														<input id="total_amount-<?=$uniqid?>" name="total_amount[]" type="number" readonly class="form-control inv_total_amount" value="<?php echo $service->total_amount?>">
+														<input id="total_amount-<?=$uniqid?>" name="total_amount[]" type="number" readonly class="form-control inv_total_amount" value="<?php echo $item->total_amount?>">
 													</div>
 													</div>
 												</div>
@@ -159,7 +192,7 @@
 
 											</div>
 											<div class="form-group">
-												<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("invoice/ajax_service_block")?>" data-counter="<?php echo count($services)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Services</button>
+												<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("invoice/ajax_service_block")?>" data-counter="<?php echo count($items)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
 											</div>
 										
 										

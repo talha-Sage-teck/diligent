@@ -102,15 +102,43 @@
 								
 									<div class="card-body border-top">
 									<div class="form-group">
-										<label for="item_input" class="col-form-label">Items</label>
-										<input type="text" id="item_input" class="form-control form-control-sm" placeholder="Type or select an item" oninput="filterOptions()">
-										<select id="item_dropdown" class="form-control form-control-sm" name="items[]" size="5" style="display: none;">
+										<!-- Dropdown select with unique id -->
+										<select class="form-control form-control-sm item-select" id="select-0"  name="items[]">
 											<option value="">Select an item</option>
-											<?php foreach ($items as $id => $title): ?>
-												<option value="<?= $id ?>"><?= $title ?></option>
+											<?php foreach($myitems as $idx => $title): ?>
+												<option value="<?= $title ?>"><?= $title ?></option>
 											<?php endforeach; ?>
+											<option value="custom">Custom</option> <!-- Option to trigger custom input -->
 										</select>
+
+										<!-- Custom input field with unique id -->
+										<input type="text" id="custom-0" class="form-control form-control-sm custom-item"  placeholder="Enter custom value" style="display: none;">
 									</div>
+									<script>
+										document.addEventListener('change', function(event) {
+											// Check if the changed element is a select dropdown with class 'item-select'
+											if (event.target && event.target.classList.contains('item-select')) {
+												var selectElement = event.target;
+												var selectId = selectElement.id.split('-')[1];  // Extract the unique id from select element
+
+												// Find the associated custom input field using the extracted id
+												var customInput = document.getElementById('custom-' + selectId);
+
+												// Check if 'Custom' is selected
+												if (selectElement.value === 'custom') {
+													customInput.style.display = "block";  // Show the custom input
+													customInput.setAttribute("name", "items[]");  // Update name for form submission
+													selectElement.removeAttribute("name");  // Remove name from select to avoid conflicts
+												} else {
+													customInput.style.display = "none";  // Hide the custom input
+													customInput.removeAttribute("name");  // Remove name from custom input
+													selectElement.setAttribute("name", "items[]");  // Reapply name to select
+												}
+											}
+										});
+									</script>
+
+
 										<div class="form-group">
 											<label for="sfrequency" class="col-form-label">Frequency</label>
 											<input id="sfrequency" name="sfrequency[]" type="number" class="form-control">
@@ -159,61 +187,3 @@
 		</div>
 	</div>
 </div>
-
-
-<script>
-    function filterOptions() {
-        const input = document.getElementById('item_input');
-        const dropdown = document.getElementById('item_dropdown');
-        const filter = input.value.toLowerCase();
-        const options = dropdown.options;
-
-        // Show dropdown only if there are matching items
-        let hasMatches = false;
-
-        for (let i = 1; i < options.length; i++) { // Start from 1 to skip the placeholder option
-            const optionText = options[i].text.toLowerCase();
-            if (optionText.includes(filter)) {
-                options[i].style.display = ''; // Show matching option
-                hasMatches = true;
-            } else {
-                options[i].style.display = 'none'; // Hide non-matching option
-            }
-        }
-
-        dropdown.style.display = hasMatches ? 'block' : 'none'; // Show dropdown if matches exist
-    }
-
-    // Event listeners to show/hide dropdown
-    document.getElementById('item_input').addEventListener('focus', function() {
-        document.getElementById('item_dropdown').style.display = 'block'; // Show dropdown on input focus
-    });
-
-    document.getElementById('item_input').addEventListener('blur', function() {
-        setTimeout(() => {
-            document.getElementById('item_dropdown').style.display = 'none'; // Hide dropdown after losing focus
-        }, 100);
-    });
-
-    // Set input value when an option is selected
-    document.getElementById('item_dropdown').addEventListener('change', function() {
-        const input = document.getElementById('item_input');
-        input.value = this.options[this.selectedIndex].text; // Set input value to selected option text
-    });
-
-    // Allow custom input as valid selection
-    document.getElementById('item_input').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            const inputValue = this.value.trim();
-            if (inputValue) {
-                // Perform action with the custom input value (e.g., submit form or store value)
-                console.log('Custom input:', inputValue); // Replace with your handling logic
-                // You can also set the value to the dropdown if needed:
-                const newOption = new Option(inputValue, inputValue); // Value can be the input itself
-                document.getElementById('item_dropdown').appendChild(newOption);
-                this.value = inputValue; // Keep the input value
-            }
-            event.preventDefault(); // Prevent form submission if in a form context
-        }
-    });
-</script>

@@ -96,25 +96,53 @@
 							</div>
 							<div class="services_block">
 								<?php if(!empty($items)){
-	$i = 1;
+								$i = 1;
 								foreach($items as $item){
 								?>
 								<div class="card">
 									<h5 class="card-header">
-														Item <?php echo $i?>
+														Items <?php echo $i?>
 													</h5>
 								
 									<div class="card-body border-top">
 									<div class="form-group">
-										<label for="item_input" class="col-form-label">Items</label>
-										<input type="text" id="item_input" class="form-control form-control-sm" placeholder="Type or select an item" oninput="filterOptions()">
-										<select id="item_dropdown" class="form-control form-control-sm" name="items[]" size="5" style="display: none;">
-											<option value="">Select an item</option>
-											<?php foreach ($myitems as $id => $title): ?>
-												<option value="<?= $id ?>"><?= $title ?></option>
+										<select class="form-control form-control-sm item-select select-<?=$i?>" name="items[]">
+											<option value="<?= $item->title ?>" default><?= $item->title ?></option>
+											<?php foreach($myitems as $idx => $title): ?>
+												<option value="<?= $title ?>"><?= $title ?></option>
 											<?php endforeach; ?>
+											<option value="custom">Custom</option> <!-- Option to trigger custom input -->
 										</select>
+
+										<!-- Custom input field with unique id -->
+										<input type="text" class="form-control form-control-sm custom-item custom-<?=$i?>" placeholder="Enter custom value" style="display: none;">
 									</div>
+
+									<script>
+										document.addEventListener('change', function(event) {
+											// Check if the changed element is a select dropdown with class 'item-select'
+											if (event.target && event.target.classList.contains('item-select')) {
+												var selectElement = event.target;
+												var selectId = selectElement.className.split(' ').find(cls => cls.startsWith('select-')).split('-')[1]; // Extract the unique id from select class
+
+												// Find the associated custom input field using the extracted id
+												var customInput = document.querySelector('.custom-' + selectId); // Using querySelector to select by class
+
+												// Check if 'Custom' is selected
+												if (selectElement.value === 'custom') {
+													customInput.style.display = "block";  // Show the custom input
+													customInput.setAttribute("name", "items[]");  // Update name for form submission
+													selectElement.removeAttribute("name");  // Remove name from select to avoid conflicts
+												} else {
+													customInput.style.display = "none";  // Hide the custom input
+													customInput.removeAttribute("name");  // Remove name from custom input
+													selectElement.setAttribute("name", "items[]");  // Reapply name to select
+												}
+											}
+										});
+									</script>
+
+
 										<div class="form-group">
 											<label for="sfrequency" class="col-form-label">Frequency</label>
 											<input id="sfrequency" name="sfrequency[]" type="number" class="form-control" value="<?php echo $item->frequency?>">
@@ -130,7 +158,7 @@
 }?>
 							</div>
 							<div class="form-group">
-								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="<?php echo count($items)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
+								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="<?php echo count($item)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
 							</div>
 
 
@@ -165,44 +193,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-    function filterOptions() {
-        const input = document.getElementById('item_input');
-        const dropdown = document.getElementById('item_dropdown');
-        const filter = input.value.toLowerCase();
-        const options = dropdown.options;
-
-        // Show dropdown only if there are matching items
-        let hasMatches = false;
-
-        for (let i = 1; i < options.length; i++) { // Start from 1 to skip the placeholder option
-            const optionText = options[i].text.toLowerCase();
-            if (optionText.includes(filter)) {
-                options[i].style.display = ''; // Show matching option
-                hasMatches = true;
-            } else {
-                options[i].style.display = 'none'; // Hide non-matching option
-            }
-        }
-
-        dropdown.style.display = hasMatches ? 'block' : 'none'; // Show dropdown if matches exist
-    }
-
-    // Event listeners to show/hide dropdown
-    document.getElementById('item_input').addEventListener('focus', function() {
-        document.getElementById('item_dropdown').style.display = 'block'; // Show dropdown on input focus
-    });
-
-    document.getElementById('item_input').addEventListener('blur', function() {
-        setTimeout(() => {
-            document.getElementById('item_dropdown').style.display = 'none'; // Hide dropdown after losing focus
-        }, 100);
-    });
-
-    // Set input value when an option is selected
-    document.getElementById('item_dropdown').addEventListener('change', function() {
-        const input = document.getElementById('item_input');
-        input.value = this.options[this.selectedIndex].text; // Set input value to selected option text
-    });
-</script>

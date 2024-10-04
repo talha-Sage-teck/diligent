@@ -69,15 +69,15 @@
 												if(!empty($items)){
 													$i = 1;
 													$subtotal = 0;
-												foreach($items as $service){?>
+												foreach($items as $item){?>
                                                 <tr>
                                                     <td class="center"><?php echo $i?></td>
-                                                    <td class="left strong"><?php echo $service->title?></td>
-                                                    <td class="left"><?php echo $service->frequency ?></td>
-                                                    <td class="right"><?php echo show_price($service->price); ?></td>
+                                                    <td class="left strong"><?php echo $item->title?></td>
+                                                    <td class="left"><?php echo $item->frequency ?></td>
+                                                    <td class="right"><?php echo show_price($item->price); ?></td>
                                                 </tr>
 												<?php $i++; 
-												$subtotal = $subtotal + $service->price;						  
+												$subtotal = $subtotal + $item->price;						  
 												}
 												}?>
                                             </tbody>
