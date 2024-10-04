@@ -117,32 +117,6 @@
 										<!-- Custom input field with unique id -->
 										<input type="text" class="form-control form-control-sm custom-item custom-<?=$i?>" placeholder="Enter custom value" style="display: none;">
 									</div>
-
-									<script>
-										document.addEventListener('change', function(event) {
-											// Check if the changed element is a select dropdown with class 'item-select'
-											if (event.target && event.target.classList.contains('item-select')) {
-												var selectElement = event.target;
-												var selectId = selectElement.className.split(' ').find(cls => cls.startsWith('select-')).split('-')[1]; // Extract the unique id from select class
-
-												// Find the associated custom input field using the extracted id
-												var customInput = document.querySelector('.custom-' + selectId); // Using querySelector to select by class
-
-												// Check if 'Custom' is selected
-												if (selectElement.value === 'custom') {
-													customInput.style.display = "block";  // Show the custom input
-													customInput.setAttribute("name", "items[]");  // Update name for form submission
-													selectElement.removeAttribute("name");  // Remove name from select to avoid conflicts
-												} else {
-													customInput.style.display = "none";  // Hide the custom input
-													customInput.removeAttribute("name");  // Remove name from custom input
-													selectElement.setAttribute("name", "items[]");  // Reapply name to select
-												}
-											}
-										});
-									</script>
-
-
 										<div class="form-group">
 											<label for="sfrequency" class="col-form-label">Frequency</label>
 											<input id="sfrequency" name="sfrequency[]" type="number" class="form-control" value="<?php echo $item->frequency?>">
@@ -193,3 +167,4 @@
 		</div>
 	</div>
 </div>
+<script src="<?php echo base_url('assets/libs/js/custom.js'); ?>"></script>
