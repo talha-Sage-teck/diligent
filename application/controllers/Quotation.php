@@ -108,7 +108,7 @@ class Quotation extends Front_Controller {
 			'location' => '',
 			'default_quotation_html' => $this->load->view("ajax_inc/default_quotation_html", [] ,true),
 		);
-//		$data['services'] = db_options_arr($this->services_model->get_all(), 'id', 'title');
+		$data['items'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
 		$data['row'] = [];
 		$this->renderView( 'quotation/quotation_add', $data );
 	}
@@ -185,6 +185,8 @@ class Quotation extends Front_Controller {
             $data['action'] = 'update';			
             $data['frm_action'] = site_url('quotation/update_action');
 
+		
+		$data['myitems'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
 		$this->renderView('quotation/edit', $data);
 			
         } else {
@@ -225,7 +227,7 @@ class Quotation extends Front_Controller {
 	
 	function _read_quotation($id, $row){
 		$userinfo = $this->users_model->get_by_id($row->prepared_by);
-			$services = $this->quotation_services_model->getByQuoteId($id);
+			$items = $this->quotation_services_model->getByQuoteId($id);
             $data = array(
 			'id' => $row->id,
 			'clientname' => $row->clientname,
@@ -238,7 +240,7 @@ class Quotation extends Front_Controller {
 			'mobduration' => $row->mobduration,
 			'workduration' => $row->workduration,
 			'quotation_text' => $row->quotation_text,
-			'services' => $services,
+			'items' => $items,
 	    );
 		
 		return $data;
@@ -249,6 +251,8 @@ class Quotation extends Front_Controller {
 		$this->quotation_services_model->delete($quotation_id,"quotation_id");
 		
 		$items = $this->input->post( 'items', TRUE );
+		echo "<h1>";
+		echo $items;
 			$frequency = $this->input->post( 'sfrequency', TRUE );
 			$price = $this->input->post( 'sprice', TRUE );
 			for($i = 0; $i< count($items); $i++){
@@ -284,13 +288,15 @@ class Quotation extends Front_Controller {
     }
 	
 	function ajax_service_block(){
-		$data['items'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
-		$data['row'] = [];
-		$data['action'] = 'Add';
-		$data['counter'] = $this->input->get("counter");
-		
-		echo $this->load->view("ajax_inc/services_add_block", $data, true);
+        $data['items'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
+        $data['row'] = [];
+        $data['action'] = 'Add';
+        $data['counter'] = $this->input->get("counter");
+
+        echo $this->load->view("ajax_inc/services_add_block", $data, true);
 	}
+	
+	
 
 	public
 	function _rules() {

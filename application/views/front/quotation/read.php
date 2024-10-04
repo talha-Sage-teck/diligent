@@ -66,10 +66,10 @@
                                             <tbody>
 												<?php 
 	
-												if(!empty($services)){
+												if(!empty($items)){
 													$i = 1;
 													$subtotal = 0;
-												foreach($services as $service){?>
+												foreach($items as $service){?>
                                                 <tr>
                                                     <td class="center"><?php echo $i?></td>
                                                     <td class="left strong"><?php echo $service->title?></td>
