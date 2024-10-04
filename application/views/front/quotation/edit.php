@@ -95,26 +95,61 @@
 								<input id="location" name="location" type="text" class="form-control" value="<?php echo $location; ?>">
 							</div>
 							<div class="services_block">
-								<?php if(!empty($services)){
-	$i = 1;
-								foreach($services as $service){
+								<?php if(!empty($items)){
+								$i = 1;
+								foreach($items as $item){
 								?>
 								<div class="card">
 									<h5 class="card-header">
-														Service <?php echo $i?>
+														Items <?php echo $i?>
 													</h5>
 								
 									<div class="card-body border-top">
-										<div class="form-group">
-											<textarea class="form-control form-control-sm" name="services[]" rows="1"><?php echo $service->title?></textarea>
-										</div>
+									<div class="form-group">
+										<select class="form-control form-control-sm item-select select-<?=$i?>" name="items[]">
+											<option value="<?= $item->title ?>" default><?= $item->title ?></option>
+											<?php foreach($myitems as $idx => $title): ?>
+												<option value="<?= $title ?>"><?= $title ?></option>
+											<?php endforeach; ?>
+											<option value="custom">Custom</option> <!-- Option to trigger custom input -->
+										</select>
+
+										<!-- Custom input field with unique id -->
+										<input type="text" class="form-control form-control-sm custom-item custom-<?=$i?>" placeholder="Enter custom value" style="display: none;">
+									</div>
+
+									<script>
+										document.addEventListener('change', function(event) {
+											// Check if the changed element is a select dropdown with class 'item-select'
+											if (event.target && event.target.classList.contains('item-select')) {
+												var selectElement = event.target;
+												var selectId = selectElement.className.split(' ').find(cls => cls.startsWith('select-')).split('-')[1]; // Extract the unique id from select class
+
+												// Find the associated custom input field using the extracted id
+												var customInput = document.querySelector('.custom-' + selectId); // Using querySelector to select by class
+
+												// Check if 'Custom' is selected
+												if (selectElement.value === 'custom') {
+													customInput.style.display = "block";  // Show the custom input
+													customInput.setAttribute("name", "items[]");  // Update name for form submission
+													selectElement.removeAttribute("name");  // Remove name from select to avoid conflicts
+												} else {
+													customInput.style.display = "none";  // Hide the custom input
+													customInput.removeAttribute("name");  // Remove name from custom input
+													selectElement.setAttribute("name", "items[]");  // Reapply name to select
+												}
+											}
+										});
+									</script>
+
+
 										<div class="form-group">
 											<label for="sfrequency" class="col-form-label">Frequency</label>
-											<input id="sfrequency" name="sfrequency[]" type="number" class="form-control" value="<?php echo $service->frequency?>">
+											<input id="sfrequency" name="sfrequency[]" type="number" class="form-control" value="<?php echo $item->frequency?>">
 										</div>
 										<div class="form-group">
 											<label for="sprice" class="col-form-label">Price</label>
-											<input id="sprice" name="sprice[]" type="number" class="form-control" value="<?php echo $service->price?>">
+											<input id="sprice" name="sprice[]" type="number" class="form-control" value="<?php echo $item->price?>">
 										</div>
 									</div>
 								</div>
@@ -123,7 +158,7 @@
 }?>
 							</div>
 							<div class="form-group">
-								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="<?php echo count($services)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Services</button>
+								<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("quotation/ajax_service_block")?>" data-counter="<?php echo count($item)?>"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
 							</div>
 
 

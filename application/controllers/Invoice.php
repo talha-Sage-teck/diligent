@@ -21,6 +21,7 @@ class Invoice extends Front_Controller
 	$this->data['pslug'] = 'invoice';
 	  
 	$this->load->model('users_model');
+	$this->load->model('items_model');
 	$this->load->model('quotation_model');		
 	$this->load->model('invoice_model');		
 	$this->load->model('invoice_services_model');		
@@ -61,7 +62,7 @@ class Invoice extends Front_Controller
 			'quotation_id' => $quotation_id,
 			'clientname' => $row->clientname,
 		);
-//		$data['services'] = db_options_arr($this->services_model->get_all(), 'id', 'title');
+		$data['items'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
 		$data['row'] = [];
 		$this->renderView( 'invoice/add', $data );
 	}
@@ -102,17 +103,17 @@ class Invoice extends Front_Controller
 		// delete all service of invoice then recreate all
 		$this->invoice_services_model->delete($invoice_id,"invoice_id");
 		
-		$services = $this->input->post( 'services', TRUE );
+		$items = $this->input->post( 'items', TRUE );
 		$rate = $this->input->post( 'rate', TRUE );
 		$qty = $this->input->post( 'qty', TRUE );
 		$tax_amount = $this->input->post( 'tax_amount', TRUE );
 		$total_amount = $this->input->post( 'total_amount', TRUE );
 		
 		
-		for($i = 0; $i< count($services); $i++){
+		for($i = 0; $i< count($items); $i++){
 			if($rate[$i] != "" && $qty[$i] != ""){
 			$services_data[] = [
-								"title" => $services[$i],
+								"title" => $items[$i],
 								"rate" => $rate[$i],
 								"qty" => $qty[$i],
 								"tax_amount" => $tax_amount[$i],
@@ -149,14 +150,15 @@ class Invoice extends Front_Controller
     public function update($id) 
     {
         $row = $this->invoice_model->get_by_id($id);
-		$services = $this->invoice_services_model->getByInvId($id);
+		$items = $this->invoice_services_model->getByInvId($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',				
 				'action' => 'update',
 				'frm_action' => site_url('invoice/update_action'),
-				'services' => $services,
+				'items'=> $items,
+				'myitems' => db_options_arr($this->items_model->get_all(), 'id', 'title'),
 	    );
 		foreach($this->_columns() as $f){
 				$data[$f] = set_value($f, $row->$f);				
@@ -200,7 +202,7 @@ class Invoice extends Front_Controller
 		
 	function _read_invoice($id, $row){
 		$userinfo = $this->users_model->get_by_id($row->prepared_by);
-		$services = $this->invoice_services_model->getByInvId($id);
+		$items = $this->invoice_services_model->getByInvId($id);
             $data = array(
 			'id' => $row->id,
 			'clientname' => $row->clientname,
@@ -213,7 +215,7 @@ class Invoice extends Front_Controller
 			'trn_number' => $row->trn_number,
 			'ref_number' => $row->ref_number,
 			'grand_total' => $row->grand_total,
-			'services' => $services,
+			'items' => $items,
 	    );
 		
 		return $data;
@@ -233,7 +235,7 @@ class Invoice extends Front_Controller
 	
 	
 	function ajax_service_block(){
-//		$data['services'] = db_options_arr($this->services_model->get_all(), 'id', 'title');
+		$data['myitems'] = db_options_arr($this->items_model->get_all(), 'id', 'title');
 		$data['row'] = [];
 		$data['action'] = 'Add';
 		$data['counter'] = $this->input->get("counter");
@@ -247,7 +249,7 @@ class Invoice extends Front_Controller
 		
 		$data = $this->_read_invoice($id, $row);
 		$data['template'] = "pdf_templates/invoice";
-//		$data['services'] = $services;
+		$data['items'] = $items;
 		$data['pdffilename'] = "INV-BAC-".date('Y', strtotime($data['created_at']))."-".$data['id'].".pdf";
 		$this->createPDF($data , "D");
 	}
@@ -276,7 +278,7 @@ class Invoice extends Front_Controller
 		$this->form_validation->set_rules( 'year', 'Year', 'trim|required' );
 		$this->form_validation->set_rules( 'for_building', 'Building name', 'trim|required' );
 		$this->form_validation->set_rules( 'office', 'Office', 'trim|required' );
-		$this->form_validation->set_rules( 'services[]', 'services', 'trim|required' );
+		$this->form_validation->set_rules( 'items[]', 'items', 'trim|required' );
 		$this->form_validation->set_error_delimiters( '<div>', '</div>' );
 	}
 

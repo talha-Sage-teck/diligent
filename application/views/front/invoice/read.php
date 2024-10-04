@@ -142,21 +142,21 @@
 							<td colspan="6">
 								<table width="100%" border="0" cellpadding="1">
 									<tbody>
-										<?php if($services){
+										<?php if($items){
 	$i = 1;$rate_total = $tax_total = 0;
-										foreach($services as $service){
+										foreach($items as $item){
 										?>
 										<tr>
 											<td width="4%" style="border-right: 1px solid #000000"><?php echo $i?></td>
-											<td width="41%" style="border-right: 1px solid #000000"><?php echo $service->title ?></td>
-											<td width="12%" style="border-right: 1px solid #000000"><?php echo $service->rate ?></td>
+											<td width="41%" style="border-right: 1px solid #000000"><?php echo $item->title ?></td>
+											<td width="12%" style="border-right: 1px solid #000000"><?php echo $item->rate ?></td>
 											<td width="13%" style="border-right: 1px solid #000000"><?php echo VAT_TEXT?></td>
-											<td width="13%" style="border-right: 1px solid #000000"><?php echo $service->tax_amount ?></td>
-											<td width="17%"><?php echo $service->total_amount ?></td>
+											<td width="13%" style="border-right: 1px solid #000000"><?php echo $item->tax_amount ?></td>
+											<td width="17%"><?php echo $item->total_amount ?></td>
 										</tr>
 										<?php $i++; 
-										$rate_total = $rate_total + $service->rate;
-										$tax_total = $tax_total + $service->tax_amount;
+										$rate_total = $rate_total + $item->rate;
+										$tax_total = $tax_total + $item->tax_amount;
 										}
 										}?>
 									</tbody>

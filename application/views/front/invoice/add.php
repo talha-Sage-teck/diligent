@@ -125,7 +125,7 @@
 
 											</div>
 											<div class="form-group">
-												<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("invoice/ajax_service_block")?>" data-counter="0"><i class="fa fa-fw fa-plus text-success"></i> Add More Services</button>
+												<button type="button" class="btn btn-warning" id="addservicesblock" data-ajax_url="<?php echo site_url("invoice/ajax_service_block")?>" data-counter="0"><i class="fa fa-fw fa-plus text-success"></i> Add More Items</button>
 											</div>
 											
 										
