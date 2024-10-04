@@ -292,7 +292,7 @@ Add css styles to header
 /* @param $amount int/float
 ** @param $symbol string 
 */
-	function show_price($amount, $print=true, $symbol = 'AED', $position='left', $space = true){
+	function show_price($amount, $print=true, $symbol = 'PKR', $position='left', $space = true){
 		$addspace = ($space == true)? ' ' : '';
 		
 		if($position == 'left'){

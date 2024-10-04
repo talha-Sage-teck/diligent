@@ -249,7 +249,6 @@ class Invoice extends Front_Controller
 		
 		$data = $this->_read_invoice($id, $row);
 		$data['template'] = "pdf_templates/invoice";
-		$data['items'] = $items;
 		$data['pdffilename'] = "INV-BAC-".date('Y', strtotime($data['created_at']))."-".$data['id'].".pdf";
 		$this->createPDF($data , "D");
 	}

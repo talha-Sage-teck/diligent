@@ -80,7 +80,7 @@ class ClientQuotation extends Front_Controller {
 		$row = $this->quotation_model->get_by_id($id);
 		$data = $this->_read_quotation($id, $row);
 		$data['template'] = "pdf_templates/quotation";
-		$data['pdffilename'] = "BETTER-Qt-S".date('Y', strtotime($data['created_at']))."-".$data['id'].".pdf";
+		$data['pdffilename'] = "DILIGENT-Qt-S".date('Y', strtotime($data['created_at']))."-".$data['id'].".pdf";
 		$this->createPDF($data , "D");
 	}
 	

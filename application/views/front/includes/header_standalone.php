@@ -57,7 +57,7 @@
 				<div class="container-fluid">
 					<div class="row text-center">
 						<div class="col">
-						<img src="<?php assets("images/logo-main.png")?>" alt="Better Access" class="mx-auto d-block">
+						<img src="<?php assets("images/logo-main.png")?>" alt="DILIGENT ENERGY" class="mx-auto d-block">
 						</div>
 					</div>
 				</div>

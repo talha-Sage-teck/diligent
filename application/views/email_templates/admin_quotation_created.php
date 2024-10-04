@@ -157,7 +157,7 @@
 											</tr>
 											<tr>
 												<td>&nbsp;</td>
-												<td>All Equipment’s and access cost will be in <strong>BETTER ACCESS</strong> scope</td>
+												<td>All Equipment’s and access cost will be in <strong>DILIGENT ENERGY</strong> scope</td>
 												<td>&nbsp;</td>
 												<td>&nbsp;</td>
 											</tr>

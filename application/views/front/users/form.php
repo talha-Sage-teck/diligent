@@ -84,7 +84,7 @@
           <div class="form-group">
             <label for="company" class="col-sm-2 form-label">Company </label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="company" id="company" placeholder="company" value="<?php echo $company ? $company : "Better Access"; ?>" />
+              <input type="text" class="form-control" name="company" id="company" placeholder="company" value="<?php echo $company ? $company : "DILIGENT ENERGY"; ?>" />
               <div class="help-block"><?php echo form_error('company') ?></div>
             </div>
           </div>

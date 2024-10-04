@@ -27,7 +27,7 @@
                 <!-- brand logo -->
                 <!-- ============================================================== -->
                 <div class="dashboard-nav-brand">
-                    <a class="dashboard-logo" href="<?php echo site_url()?>">BETTER ACCESS</a>
+                    <a class="dashboard-logo" href="<?php echo site_url()?>">DILIGENT ENERGY</a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- end brand logo -->
@@ -62,7 +62,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-dark text-center">
-                            Copyright © <?php echo date('Y')?> Better Access. All rights reserved.
+                            Copyright © <?php echo date('Y')?> DILIGENT ENERGY. All rights reserved.
                         </div>
                     </div>
                 </div>

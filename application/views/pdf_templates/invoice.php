@@ -62,25 +62,22 @@
 												<table width="100%" border="0" cellpadding="1">
 													<tbody>
 														<tr>
-															<td>BETTER ACCESS CLEANING SERVICES LLC</td>
+															<td>DILIGENT ENERGY</td>
 														</tr>
 														<tr>
-															<td>OFFICE NO 113</td>
+															<td>House # 595, Block J</td>
 														</tr>
 														<tr>
-															<td>HAMRIYA STREET</td>
+															<td>Johar Town</td>
 														</tr>
 														<tr>
-															<td>DUBAI U.A.E</td>
+															<td>Lahore - Pakistan.</td>
 														</tr>
 														<tr>
-															<td>P.O.BOX: 96925</td>
+															<td>P.O.BOX: 54782</td>
 														</tr>
 														<tr>
-															<td>TRN: 100328204100003</td>
-														</tr>
-														<tr>
-															<td>Email Address: info@betteraccess.ae</td>
+															<td>Email Address: info@diligentgroups.com</td>
 														</tr>
 													</tbody>
 												</table>
@@ -199,21 +196,21 @@
 							<td colspan="6">
 								<table width="100%" border="0" cellpadding="1">
 									<tbody>
-										<?php if($services){
+										<?php if($items){
 	$i = 1;$rate_total = $tax_total = 0;
-										foreach($services as $service){
+										foreach($items as $item){
 										?>
 										<tr>
 											<td width="4%" style="border-right: 1px solid #000000"><?php echo $i?></td>
-											<td width="41%" style="border-right: 1px solid #000000"><?php echo $service->title ?></td>
-											<td width="12%" style="border-right: 1px solid #000000"><?php echo $service->rate ?></td>
+											<td width="41%" style="border-right: 1px solid #000000"><?php echo $item->title ?></td>
+											<td width="12%" style="border-right: 1px solid #000000"><?php echo $item->rate ?></td>
 											<td width="13%" style="border-right: 1px solid #000000"><?php echo VAT_TEXT?></td>
-											<td width="13%" style="border-right: 1px solid #000000"><?php echo $service->tax_amount ?></td>
-											<td width="17%"><?php echo $service->total_amount ?></td>
+											<td width="13%" style="border-right: 1px solid #000000"><?php echo $item->tax_amount ?></td>
+											<td width="17%"><?php echo $item->total_amount ?></td>
 										</tr>
 										<?php $i++; 
-										$rate_total = $rate_total + $service->rate;
-										$tax_total = $tax_total + $service->tax_amount;
+										$rate_total = $rate_total + $item->rate;
+										$tax_total = $tax_total + $item->tax_amount;
 										}
 										}?>
 									</tbody>
@@ -266,22 +263,22 @@
 							</td>
 						</tr>
 						<tr>
-							<td>Account Title: Better Access Cleaning services LLC</td>
+							<td>Account Title: DILIGENT ENERGY</td>
 						</tr>
 						<tr>
-							<td>IBAN Number: 03303300000191455413</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Account Number: 019100455413</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>SWIFT Code: BOMLAEAD</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Bank Name: Mashreq Bank</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Brank Name: Branchless (Digital Banking)</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -303,7 +300,7 @@
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
-							<td>For<br>BETTER ACCESS CLEANING SERVICES LLC<br>
+							<td>For<br>DILIGENT ENERGY<br>
 <img src="<?php echo FCPATH."assets/images/sign.png"?>" width="100" ></td>
 							<td align="center"><br><br>ADMIN & ACCOUNTS<br>
 <img src="<?php echo FCPATH."assets/images/ac_sign.png"?>" width="60" ></td>

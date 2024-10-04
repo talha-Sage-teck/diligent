@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3 text-center">
-				<p>Copyright © <?php echo date('Y')?> Better Access. All rights reserved.</p>
+				<p>Copyright © <?php echo date('Y')?> DILIGENT ENERGY. All rights reserved.</p>
 			</div>
 		</div>
 	</div>

@@ -34,27 +34,24 @@
                                     <div class="row mb-4">
                                         <div class="col-sm-6">
                                             <table width="100%" border="0" cellpadding="1">
-													<tbody>
+											<tbody>
 														<tr>
-															<td>BETTER ACCESS CLEANING SERVICES LLC</td>
+															<td>DILIGENT ENERGY</td>
 														</tr>
 														<tr>
-															<td>OFFICE NO 113</td>
+															<td>House # 595, Block J</td>
 														</tr>
 														<tr>
-															<td>HAMRIYA STREET</td>
+															<td>Johar Town</td>
 														</tr>
 														<tr>
-															<td>DUBAI U.A.E</td>
+															<td>Lahore - Pakistan.</td>
 														</tr>
 														<tr>
-															<td>P.O.BOX: 96925</td>
+															<td>P.O.BOX: 54782</td>
 														</tr>
 														<tr>
-															<td>TRN: 100328204100003</td>
-														</tr>
-														<tr>
-															<td>Email Address: info@betteraccess.ae</td>
+															<td>Email Address: info@diligentgroups.com</td>
 														</tr>
 													</tbody>
 												</table>
@@ -206,22 +203,22 @@
 							</td>
 						</tr>
 						<tr>
-							<td>Account Title: Better Access Cleaning services LLC</td>
+							<td>DILIGENT ENERGY</td>
 						</tr>
 						<tr>
-							<td>IBAN Number: 03303300000191455413</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Account Number: 019100455413</td>
+							<td</td>
 						</tr>
 						<tr>
-							<td>SWIFT Code: BOMLAEAD</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Bank Name: Mashreq Bank</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>Brank Name: Branchless (Digital Banking)</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>

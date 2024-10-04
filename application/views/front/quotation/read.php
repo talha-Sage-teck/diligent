@@ -39,7 +39,7 @@
                                     <div class="row mb-4">
                                         <div class="col-sm-6">
                                             <h5 class="mb-3">Quotation Ref No.:</h5>                                            
-                                            <h3 class="text-dark mb-1">BETTER/Qt/S<?php echo date('Y', strtotime($created_at))?>/<?php echo $id?></h3>
+                                            <h3 class="text-dark mb-1">DILIGENT/Qt/S<?php echo date('Y', strtotime($created_at))?>/<?php echo $id?></h3>
                                          
                                             <div>Vat Registration No.: 100328204100007</div>
                                             <div>Quotation Validity: <?php echo $validity_days?></div>
@@ -58,8 +58,9 @@
                                             <thead>
                                                 <tr>
                                                     <th class="center">Sr. No</th>
-                                                    <th>Scope Of Work 1 Time Annually</th>
-                                                    <th>Freq</th>
+                                                    <th>Title</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit Price</th>
                                                     <th class="right">Total Amount</th>
                                                 </tr>
                                             </thead>
@@ -74,10 +75,11 @@
                                                     <td class="center"><?php echo $i?></td>
                                                     <td class="left strong"><?php echo $item->title?></td>
                                                     <td class="left"><?php echo $item->frequency ?></td>
-                                                    <td class="right"><?php echo show_price($item->price); ?></td>
+                                                    <td class="left"><?php echo show_price($item->price) ?></td>
+                                                    <td class="right"><?php echo show_price($item->price * $item->frequency); ?></td>
                                                 </tr>
 												<?php $i++; 
-												$subtotal = $subtotal + $item->price;						  
+												$subtotal = $subtotal + ($item->price * $item->frequency);						  
 												}
 												}?>
                                             </tbody>
@@ -124,7 +126,7 @@
 													</tr>
                                                     <tr>
 														<td>Duration of Work:</td>
-														<td><?php echo $workduration ?> Working Days/Service</td>
+														<td><?php echo $workduration ?> Working Days/Items</td>
 													</tr>
 										</tbody>
 									</table>

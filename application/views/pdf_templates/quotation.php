@@ -76,7 +76,7 @@ Quotation
 								<tr>
 									<th><strong>Quotation Ref No.</strong>
 									</th>
-									<td>BETTER/Qt/S<?php echo date('Y', strtotime($created_at))?>/<?php echo $id?></td>
+									<td>DILIGENT/Qt/S<?php echo date('Y', strtotime($created_at))?>/<?php echo $id?></td>
 								</tr>
 								<tr>
 									<th><strong>Vat Registration No.</strong>
@@ -146,33 +146,36 @@ Quotation
 						<tr>
 							<th width="8%" align="center" scope="col"><strong>Sr. No</strong>
 							</th>
-							<th width="62%" align="center" scope="col"><strong>Scope Of Work 1 Time Annually</strong>
+							<th width="41%" align="center" scope="col"><strong>Title</strong>
 							</th>
-							<th width="9%" align="center" scope="col"><strong>Freq</strong>
+							<th width="15%" align="center" scope="col"><strong>Quantity</strong>
+							</th>
+							<th width="15%" align="center" scope="col"><strong>Unit Price</strong>
 							</th>
 							<th width="21%" align="center" scope="col"><strong>Total Amount</strong>
 							</th>
 						</tr>
 						<tr valign="middle">
-							<td colspan="4">
+							<td colspan="5">
 								<table width="100%" border="1" cellpadding="10">
 									<tbody>
 										<?php 
-												if(!empty($services)){
+												if(!empty($items)){
 													$i = 1;
 													$subtotal = 0;
-												foreach($services as $service){?>
+												foreach($items as $item){?>
 										<tr>
 											<td width="8%"><?php echo $i?></td>
-											<td width="62%"><strong><u>Service Detail</u></strong><br>
+											<td width="41%"><strong><u>Items Detail</u></strong><br>
 												<div style="height:100px"></div>
-												<u><?php echo $service->title?></u>
+												<u><?php echo $item->title?></u>
 											</td>
-											<td valign="bottom" width="9%"><?php echo $service->frequency ?></td>
-											<td width="21%"><?php echo show_price($service->price); ?></td>
+											<td width="15%"><?php echo $item->frequency ?></td>
+											<td width="15%"><?php echo $item->price ?></td>
+											<td width="21%"><?php echo show_price($item->price * $item->frequency ); ?></td>
 										</tr>
 										<?php $i++; 
-												$subtotal = $subtotal + $service->price;						  
+												$subtotal = $subtotal + ($item->price * $item->frequency );						  
 												}
 												}?>
 									</tbody>
@@ -182,7 +185,7 @@ Quotation
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td>All Equipment’s and access cost will be in <strong>BETTER ACCESS</strong> scope</td>
+							<td>All Equipment’s and access cost will be in <strong>DILIGENT ENERGY</strong> scope</td>
 							<td>&nbsp;</td>
 							<td>&nbsp;</td>
 						</tr>
@@ -247,7 +250,7 @@ Quotation
     </tr>
     <tr>
       <td><strong>Duration of Work:</strong></td>
-      <td><?php echo $workduration ?> Working Days/Service</td>
+      <td><?php echo $workduration ?> Working Days/Items</td>
     </tr>
   </tbody>
 </table>
@@ -259,7 +262,7 @@ Quotation
 				<?php echo $quotation_text?>
 				
 				<p><strong>Yours Faithfully,</strong><br><br>
-BETTER ACCESS CLEANING SERVICES LLC<br>
+				DILIGENT ENERGY<br>
 <br>
 </p>
 				<img src="<?php echo FCPATH.'assets/images/sign.png' ?>" width="150">
