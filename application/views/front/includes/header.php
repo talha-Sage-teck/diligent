@@ -271,6 +271,9 @@
 							<a class="nav-link" href="<?php echo site_url("invoice/invoicelist")?>" aria-expanded="false" ><i class="far fa-list-alt"></i>Invoices</a>
 							</li>
 							<li class="nav-item ">
+							<a class="nav-link" href="<?php echo site_url("challan/challanlist")?>" aria-expanded="false" ><i class="fas fa-truck"></i>Delivery Challans</a>
+							</li>
+							<li class="nav-item ">
 							<a class="nav-link" href="<?php echo site_url("users")?>" aria-expanded="false" ><i class="fas fa-users"></i>Users</a>
 							</li>
 							<?php }?>

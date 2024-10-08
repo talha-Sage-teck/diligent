@@ -145,6 +145,13 @@
 												echo anchor(site_url("invoice/addinvoice/".$quotation->quotation_id),'<i class="fas fa-file-pdf"></i> Generate Invoice', array('class' => 'dropdown-item'));
 										
 										}?>
+												<?php if($quotation->challan_id){
+												echo anchor(site_url("challan/view/".$quotation->challan_id),'<i class="fas fa-eye"></i> View Challan', array('class' => 'dropdown-item'));
+												
+										}else{
+												echo anchor(site_url("challan/addchallan/".$quotation->quotation_id),'<i class="fas fa-file-pdf"></i> Generate Challan', array('class' => 'dropdown-item'));
+										
+										}?>
 											</div>
 										</div>
 										

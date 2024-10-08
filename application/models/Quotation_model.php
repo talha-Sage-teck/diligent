@@ -30,8 +30,10 @@ class Quotation_model extends My_Model
 							quotations.inspection_id,
 							quotations.quotation_text,
 							quotations.`status`,
+							delievery_challans.id As challan_id,
 							invoices.id AS invoice_id");
 		$this->db->join("invoices", "quotations.id = invoices.quotation_id", "LEFT");
+		$this->db->join("delievery_challans", "quotations.id = delievery_challans.quotation_id", "LEFT"); // Added this
 		$this->db->where($condition);
 		$this->db->order_by("quotations.id", $this->order);
 		$rs = $this->db->get($this->table);
