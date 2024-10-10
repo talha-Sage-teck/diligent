@@ -235,7 +235,7 @@ class Invoice extends Front_Controller
 	
 	function changestatus($id){
 		echo $id;
-		$updated = $this->invoice_model->update($id, ['status' => 'Paid']);
+		$updated = $this->invoice_model->update($id, ['inv_status' => 'Paid']);
 		if($updated)
 		redirect('invoice');
 	}

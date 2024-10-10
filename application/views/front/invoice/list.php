@@ -82,10 +82,10 @@
 									</td>
 									<td>
 									<?php
-									$statusColor = ($invoice->status === 'Paid') ? 'badge-success' : 'badge-danger';
+									$statusColor = ($invoice->inv_status === 'Paid') ? 'badge-success' : 'badge-danger';
 									?>
 									<span class="badge <?php echo $statusColor; ?>">
-										<?php echo $invoice->status ? $invoice->status : 'Unpaid';?>
+										<?php echo $invoice->inv_status ? $invoice->inv_status : 'Unpaid';?>
 									</span>
 									</td>
 									<?php if ( $this->ion_auth->in_group( 'admin' ) ) {?>
@@ -98,7 +98,7 @@
 						
 												
 													
-												<?php if ( !$invoice->status ) echo anchor(site_url("invoice/changestatus/".$invoice->id),'<i class="fas fa-file-pdf"></i> Mark as paid', array('class' => 'dropdown-item'));?>
+												<?php if ( !$invoice->inv_status ) echo anchor(site_url("invoice/changestatus/".$invoice->id),'<i class="fas fa-file-pdf"></i> Mark as paid', array('class' => 'dropdown-item'));?>
 	
 												
 
