@@ -52,6 +52,7 @@
 									<th>Location</th>
 									<th>Price</th>
 									<th>Date</th>
+									<th>Status</th>
 									<?php if ( $this->ion_auth->in_group( 'admin' ) ) {?>
 									<th>Action</th>
 									<?php }?>
@@ -79,6 +80,14 @@
 									<td>
 										<?php echo $invoice->created_at ?>
 									</td>
+									<td>
+									<?php
+									$statusColor = ($invoice->status === 'Paid') ? 'badge-success' : 'badge-danger';
+									?>
+									<span class="badge <?php echo $statusColor; ?>">
+										<?php echo $invoice->status ? $invoice->status : 'Unpaid';?>
+									</span>
+									</td>
 									<?php if ( $this->ion_auth->in_group( 'admin' ) ) {?>
 									<td style="text-transform: capitalize">
 										
@@ -86,6 +95,13 @@
 											<a class="toolbar" href="#" role="button" id="dropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cogs"></i>  </a>
 											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink5">
 												<?php echo anchor(site_url("invoice/downloadpdf/".$invoice->id),'<i class="fas fa-file-pdf"></i> Download Invoice', array('class' => 'dropdown-item'));?>
+						
+												
+													
+												<?php if ( !$invoice->status ) echo anchor(site_url("invoice/changestatus/".$invoice->id),'<i class="fas fa-file-pdf"></i> Mark as paid', array('class' => 'dropdown-item'));?>
+	
+												
+
 												<?php echo anchor(site_url("invoice/update/".$invoice->id),'<i class="fas fa-edit"></i> Update', array('class' => 'dropdown-item'));
 												echo anchor(site_url("invoice/view/".$invoice->id),'<i class="fas fa-eye"></i> View', array('class' => 'dropdown-item'));
 												?>

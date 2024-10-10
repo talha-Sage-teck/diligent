@@ -161,7 +161,7 @@
 							<li class="nav-item ">
                                 <a class="nav-link" href="<?php echo site_url()?>" aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Dashboard </a>
                             </li>
-							<?php if ( $this->ion_auth->in_group( ['admin', 'agent'] ) ) {?>
+							<?php if ( $this->ion_auth->in_group( ['admin', 'agent', 'salesman'] ) ) {?>
                             <li class="nav-item ">
 								
 								<a class="nav-link <?php menu_active('quotation')?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="far fa-comments"></i>Quotation</a>

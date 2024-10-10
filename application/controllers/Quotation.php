@@ -8,7 +8,7 @@ class Quotation extends Front_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$group = array( 'admin', 'inspector' );
+		$group = array( 'admin', 'salesman' );
 		if ( !$this->ion_auth->in_group( $group ) ) {
 			$this->session->set_flashdata( 'message', 'You must be a Admin or Agent to view this page' );
 			redirect( '/' );

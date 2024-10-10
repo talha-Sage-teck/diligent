@@ -10,7 +10,7 @@ class Invoice extends Front_Controller
   {
     parent::__construct();
 	  
-	$group = array( 'admin', 'agent' );
+	$group = array( 'admin', 'agent' ,'salesman');
 	if ( !$this->ion_auth->in_group( $group ) ) {
 		$this->session->set_flashdata( 'message', 'You must be a Admin or Agent to view this page' );
 		redirect( '/' );
@@ -231,6 +231,13 @@ class Invoice extends Front_Controller
             $this->session->set_flashdata('error', 'Record Not Found');
             redirect(site_url('invoice'));
         }
+	}
+	
+	function changestatus($id){
+		echo $id;
+		$updated = $this->invoice_model->update($id, ['status' => 'Paid']);
+		if($updated)
+		redirect('invoice');
 	}
 	
 	

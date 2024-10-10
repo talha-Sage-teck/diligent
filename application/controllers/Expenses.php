@@ -9,7 +9,7 @@ class Expenses extends Front_Controller
     {
         parent::__construct();
 		  
-		if (!$this->ion_auth->in_group(['admin', 'inspector']))
+		if (!$this->ion_auth->in_group(['admin', 'salesman']))
 			{
 			  $this->session->set_userdata('referrer_url', $this->agent->referrer() ); 
 			  //redirect them to the login page
