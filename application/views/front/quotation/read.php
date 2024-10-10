@@ -21,12 +21,14 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
+    <?php if ( $this->ion_auth->in_group( 'admin' ) ) {?>
 	<div class="row">
 		<div class="col-12">
 			<strong>Copy Quotation Link</strong>
 			<input type="text" size="100%" value="<?php echo site_url("clientquotation/viewquotation/$id")?>" id="myInput" <?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? 'style="visibility: hidden"' : '' ?>>
 			<button onclick="myFunction()" class="btn btn-success btn-block btn-lg mb-5" <?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? '' : 'style="visibility: hidden"' ?>>Copy Quotation Link</button></div>
 	</div>
+    <?php }?>
                     <div class="row">
                         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">

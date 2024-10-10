@@ -137,7 +137,9 @@
 											<a class="toolbar" href="#" role="button" id="dropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cogs"></i>  </a>
 											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink5">
 												<?php if($quotation->invoice_id){
+													if( $this->ion_auth->in_group( 'admin' )){
 												echo anchor(site_url("invoice/view/".$quotation->invoice_id),'<i class="fas fa-eye"></i> View Invoice', array('class' => 'dropdown-item'));
+													}
 												echo anchor(site_url("quotation/view/".$quotation->quotation_id),'<i class="fas fa-eye"></i> View Quotation', array('class' => 'dropdown-item'));
 												echo anchor(site_url("clientquotation/viewquotation/".$quotation->quotation_id),'<i class="fas fa-file-pdf"></i> Download PDF', array('class' => 'dropdown-item', 'target' => '_blank'));
 												

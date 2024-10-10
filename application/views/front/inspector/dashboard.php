@@ -30,7 +30,6 @@
 			<?php }?>
 		</div>
 	</div>
-	
 	<!-- ============================================================== -->
 	<!-- end pageheader  -->
 	<!-- ============================================================== -->
@@ -52,13 +51,13 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="d-inline-block">
-						<h5 class="text-muted">Total Inspections</h5>
-						<!-- <h2 class="mb-0"> <?php echo $total_inspections?></h2> -->
+						<h5 class="text-muted">Total Quotations</h5>
+						<h2 class="mb-0"> <?php echo $total_quotations?></h2>
 					</div>
 					<div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
 						<i class="far fa-comments fa-fw fa-sm text-info"></i>
 					</div>
-					<div class="mt-2"><a href="<?php echo site_url("inspection")?>" class="btn btn-block btn-outline-brand">View</a></div>
+					<div class="mt-2"><a href="<?php echo site_url("quotation/quotationlist")?>" class="btn btn-block btn-outline-info">View</a></div>
 				</div>
 			</div>
 		</div>
@@ -68,16 +67,17 @@
 		<!-- ============================================================== -->
 		<!-- total followers   -->
 		<!-- ============================================================== -->
-		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="d-inline-block">
-						<h5 class="text-muted">Accepted Inspections</h5>
+						<h5 class="text-muted">Accepted Quotations</h5>
 						<h2 class="mb-0"> <?php echo $total_accepted?></h2>
 					</div>
 					<div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
 						<i class="fas fa-check fa-fw fa-sm text-primary"></i>
 					</div>
+					<div class="mt-2"><a href="<?php echo site_url("quotation/quotationlist?filter=accepted")?>" class="btn btn-block btn-outline-success">View</a></div>
 				</div>
 			</div>
 		</div>
@@ -87,16 +87,17 @@
 		<!-- ============================================================== -->
 		<!-- partnerships   -->
 		<!-- ============================================================== -->
-		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="d-inline-block">
-						<h5 class="text-muted">Rejected Inspections</h5>
+						<h5 class="text-muted">Rejected Quotations</h5>
 						<h2 class="mb-0"><?php echo $total_rejected?></h2>
 					</div>
 					<div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
 						<i class="fas fa-times fa-fw fa-sm text-secondary"></i>
 					</div>
+					<div class="mt-2"><a href="<?php echo site_url("quotation/quotationlist?filter=rejected")?>" class="btn btn-block btn-outline-secondary">View</a></div>
 				</div>
 			</div>
 		</div>
@@ -106,16 +107,17 @@
 		<!-- ============================================================== -->
 		<!-- total earned   -->
 		<!-- ============================================================== -->
-		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="d-inline-block">
-						<h5 class="text-muted">Counter Inspections</h5>
+						<h5 class="text-muted">Counter Offers</h5>
 						<h2 class="mb-0"> <?php echo $total_reprice?></h2>
 					</div>
 					<div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
 						<i class="fas fa-reply fa-fw fa-sm text-brand"></i>
 					</div>
+					<div class="mt-2"><a href="<?php echo site_url("quotation/quotationlist?filter=reprice")?>" class="btn btn-block btn-outline-brand">View</a></div>
 				</div>
 			</div>
 		</div>

@@ -86,7 +86,7 @@ class Users extends Front_Controller
 		    'oauth_provider' => set_value('oauth_provider'),
 		);
 		$data["listGroups"] = $this->ion_auth->groups()->result();
-		
+
         $this->renderView('users/form', $data);
     }
     

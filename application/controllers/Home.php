@@ -28,7 +28,7 @@ class Home extends Front_Controller
 		  }
 		  redirect('agent');
 	  }
-	  elseif($this->ion_auth->in_group('inspector')){
+	  elseif($this->ion_auth->in_group('salesman')){
 		  if($this->session->userdata("error")){
 			  $this->session->set_flashdata( 'error', $this->session->userdata("error") );
 		  }

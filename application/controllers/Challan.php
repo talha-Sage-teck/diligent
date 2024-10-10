@@ -10,7 +10,7 @@ class Challan extends Front_Controller
   {
     parent::__construct();
 	  
-	$group = array( 'admin', 'agent' );
+	$group = array( 'admin', 'salesman' );
 	if ( !$this->ion_auth->in_group( $group ) ) {
 		$this->session->set_flashdata( 'message', 'You must be a Admin or Agent to view this page' );
 		redirect( '/' );
