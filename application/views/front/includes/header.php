@@ -98,7 +98,7 @@
 												</div>
 											</a>
 											<a href="#" class="list-group-item list-group-item-action">
-												<div class="notification-info">
+												<div x	class="notification-info">
 													<div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle">
 													</div>
 													<div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
@@ -161,7 +161,7 @@
 							<li class="nav-item ">
                                 <a class="nav-link" href="<?php echo site_url()?>" aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Dashboard </a>
                             </li>
-							<?php if ( $this->ion_auth->in_group( ['admin', 'agent', 'salesman'] ) ) {?>
+							<?php if ( $this->ion_auth->in_group( ['admin', 'salesman'] ) ) {?>
                             <li class="nav-item ">
 								
 								<a class="nav-link <?php menu_active('quotation')?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="far fa-comments"></i>Quotation</a>
@@ -186,6 +186,10 @@
 									</ul>
 								</div>
                             </li>
+
+							<li class="nav-item ">
+							<a class="nav-link" href="<?php echo site_url("challan/challanlist")?>" aria-expanded="false" ><i class="fas fa-truck"></i>Delivery Challans</a>
+							</li>
 							<?php }?>
 <!-- 														
 							<li class="nav-item ">
@@ -198,7 +202,7 @@
 </a>
 								<div id="submenu-4" class="collapse submenu <?php echo menu_active('inspection', false) ? 'show' : ''?>" style="">
 									<ul class="nav flex-column">
-										<?php if ( $this->ion_auth->in_group( ['inspector'] ) ) {?>
+										<?php if ( $this->ion_auth->in_group( ['salesman'] ) ) {?>
 										<li class="nav-item">
 											<a class="nav-link <?php menu_active('create|create_action')?>" href="<?php echo site_url('inspection/addinspection')?>"><i class="fa fa-fw fa-plus"></i> Add Inspection </a>
 										</li>
@@ -249,8 +253,7 @@
 									</ul>
 								</div>
                             </li>		
-							
-							
+						
 							<?php if ( $this->ion_auth->in_group( 'admin' ) ) {?>
 							<li class="nav-item ">
 								
@@ -270,9 +273,7 @@
 							<li class="nav-item ">
 							<a class="nav-link" href="<?php echo site_url("invoice/invoicelist")?>" aria-expanded="false" ><i class="far fa-list-alt"></i>Invoices</a>
 							</li>
-							<li class="nav-item ">
-							<a class="nav-link" href="<?php echo site_url("challan/challanlist")?>" aria-expanded="false" ><i class="fas fa-truck"></i>Delivery Challans</a>
-							</li>
+
 							<li class="nav-item ">
 							<a class="nav-link" href="<?php echo site_url("users")?>" aria-expanded="false" ><i class="fas fa-users"></i>Users</a>
 							</li>
